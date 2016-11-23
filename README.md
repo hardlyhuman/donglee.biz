@@ -1,4 +1,4 @@
 # donglee.biz
 My own website
 
-will be updated soon..
+many interesting things will be updated soon....
