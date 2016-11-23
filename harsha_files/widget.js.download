@@ -1,0 +1,156 @@
+var widget = {
+    paramDefaults: function (data) {
+        return $.extend(true, {
+            'numbers': {
+                'preview-open': true
+            }
+        }, data);
+    },
+    init: function () {
+        // Hide seo content (in seo mode script will be not included)
+        $('#seo').remove();
+        this.initStaticWidget();
+        Wix.addEventListener(Wix.Events.STYLE_PARAMS_CHANGE, this.onParamChange.bind(this));
+        this.adjustViewMode();
+        Wix.addEventListener(Wix.Events.EDIT_MODE_CHANGE, this.adjustViewMode.bind(this));
+        // Support for loading subpages via ajax
+        Wix.addEventListener(Wix.Events.PAGE_NAVIGATION, function () {
+            location.reload();
+        });
+    },
+    initStaticWidget: function () {
+        if (staticWidget === false) {
+            return false;
+        }
+        // Static will be always open
+        if (wixEditor === false) {
+            tidioChatApi.method('popUpOpen');
+            // Unleass it is on desktop, we will hide it
+            if (Wix.Utils.getDeviceType() === 'desktop') {
+                $('body').hide();
+                Wix.setHeight(1);
+                return;
+            }
+        }
+    },
+    onParamChange: function (data) {
+        this.setEditor();
+    },
+    /**
+     * Adjust widget iframe params
+     */
+    adjustViewMode: function () {
+        var viewMode = Wix.Utils.getViewMode();
+        $('body').attr('class', viewMode);
+        if (viewMode == 'editor') {
+            this.setEditor();
+        } else {
+            this.initLive(publicKey, function () {
+                tidioChatApi.on('resize', function (css_data) {
+                    var height = parseInt(css_data.height, 10);
+                    var width = parseInt(css_data.width, 10) + 20;
+                    this.resizeWidget(width, height);
+                }.bind(this));
+            }.bind(this));
+        }
+    },
+    getButtonSize: function () {
+        var $button = $('#tidio-chat-button');
+        return {
+            // width + side borders
+            width: $button.width() + 60,
+            // height + top place for shadow
+            height: $button.height() + 16,
+        };
+        ;
+    },
+    getWindowSize: function () {
+        var $window = $('#tidio-chat-window-online');
+        return {
+            // width + side borders
+            width: $window.width() + 60,
+            // height + top place for shadow
+            height: $window.height() + 16,
+        };
+    },
+    /**
+     * Set widget iframe params for editor
+     */
+    setEditor: function () {
+        Wix.Styles.getStyleParams(function (data) {
+            if (this.paramDefaults(data).numbers['preview-open']) {
+                var sizes = this.getWindowSize();
+                this.resizeWidget(sizes.width, sizes.height);
+                $('#tidio-chat-button').hide();
+                $('#tidio-chat-window-online').show();
+            } else {
+                var sizes = this.getButtonSize();
+                this.resizeWidget(sizes.width, sizes.height);
+                $('#tidio-chat-button').show();
+                $('#tidio-chat-window-online').hide();
+            }
+        }.bind(this));
+    },
+    /**
+     * Resize widget iframe depends on if it's mobile or desktop (fixed)
+     * @param {type} width
+     * @param {type} height
+     */
+    resizeWidget: function (width, height) {
+        if (Wix.Utils.getDeviceType() !== 'desktop') {
+            Wix.setHeight(height);
+        } else {
+            Wix.resizeWindow(width, height);
+        }
+    },
+    /**
+     * Runs Tidio Chat code, run it on published sites in live view.
+     * @param data
+     * @param callback
+     */
+    initLive: function (data, callback) {
+        if (data.length === 0) {
+            return;
+        }
+        Wix.Settings.getSiteInfo(function (siteInfo) {
+            document.tidioLocationURL = siteInfo.url;
+        });
+        // If chat was already loaded we will reload widdget
+        if ($('#tidio-chat').length) {
+            window.location.reload();
+            return;
+        }
+        var script = document.createElement('script');
+        script.id = 'tidio-script';
+        if (script.readyState) {  //IE
+            script.onreadystatechange = function () {
+                if (script.readyState == "loaded" ||
+                    script.readyState == "complete") {
+                    script.onreadystatechange = null;
+
+                    if (typeof tidioChatRender != 'undefined') {
+                        callback();
+                    } else {
+                        document.tidioChatOnLoad = callback;
+                    }
+                }
+            };
+        } else {  //Others
+            script.onload = function () {
+                if (typeof tidioChatRender != 'undefined') {
+                    callback();
+                } else {
+                    document.tidioChatOnLoad = callback;
+                }
+            };
+        }
+        var viewMode = Wix.Utils.getViewMode();
+        if (viewMode == 'editor' || viewMode == 'preview') {
+            script.setAttribute('src', 'https://code.tidio.co/' + data + '.js?_cacheKiller=' + Math.random()); // seriously
+        } else {
+            script.setAttribute('src', 'https://code.tidio.co/' + data + '.js');
+        }
+        document.body.appendChild(script);
+    }
+};
+widget.init();
