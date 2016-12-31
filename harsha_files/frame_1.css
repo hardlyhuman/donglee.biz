@@ -1,0 +1,837 @@
+/*! normalize.css v3.0.1 | MIT License | git.io/normalize */html{font-family:sans-serif;-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%}body{margin:0}article,aside,details,figcaption,figure,footer,header,hgroup,main,nav,section,summary{display:block}audio,canvas,progress,video{display:inline-block;vertical-align:baseline}audio:not([controls]){display:none;height:0}[hidden],template{display:none}a{background:transparent}a:active,a:hover{outline:0}abbr[title]{border-bottom:1px dotted}b,strong{font-weight:bold}dfn{font-style:italic}h1{font-size:2em;margin:.67em 0}mark{background:#ff0;color:#000}small{font-size:80%}sub,sup{font-size:75%;line-height:0;position:relative;vertical-align:baseline}sup{top:-0.5em}sub{bottom:-0.25em}img{border:0}svg:not(:root){overflow:hidden}figure{margin:1em 40px}hr{-moz-box-sizing:content-box;box-sizing:content-box;height:0}pre{overflow:auto}code,kbd,pre,samp{font-family:monospace,monospace;font-size:1em}button,input,optgroup,select,textarea{color:inherit;font:inherit;margin:0}button{overflow:visible}button,select{text-transform:none}button,html input[type="button"],input[type="reset"],input[type="submit"]{-webkit-appearance:button;cursor:pointer}button[disabled],html input[disabled]{cursor:default}button::-moz-focus-inner,input::-moz-focus-inner{border:0;padding:0}input{line-height:normal}input[type="checkbox"],input[type="radio"]{box-sizing:border-box;padding:0}input[type="number"]::-webkit-inner-spin-button,input[type="number"]::-webkit-outer-spin-button{height:auto}input[type="search"]{-webkit-appearance:textfield;-moz-box-sizing:content-box;-webkit-box-sizing:content-box;box-sizing:content-box}input[type="search"]::-webkit-search-cancel-button,input[type="search"]::-webkit-search-decoration{-webkit-appearance:none}fieldset{border:1px solid silver;margin:0 2px;padding:.35em .625em .75em}legend{border:0;padding:0}textarea{overflow:auto}optgroup{font-weight:bold}table{border-collapse:collapse;border-spacing:0}td,th{padding:0}
+body *{
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    -webkit-hyphens: none;
+}
+body{
+    font-size: 16px;
+    line-height: 1.2em;
+    overflow: hidden;
+    min-height: 60px;
+}
+
+body,
+input,
+textarea {
+    font-family: 'Roboto Condensed', sans-serif;
+}
+
+body.os-os-x,
+.os-os-x input,
+.os-os-x textarea,
+.os-os-x td,
+.os-os-x p{
+    -webkit-text-stroke: 0.2px;
+    -webkit-font-smoothing: antialiased;
+}
+.btn-close{
+    position: absolute;
+    top: -8px;
+    right: 0px;
+    font-size: 18px;
+    font-weight: 300;
+    text-decoration: none;
+    color: #FFF;
+    display: block;
+    background: rgba(0, 0, 0, .5);
+    border-radius: 20px;
+    width: 22px;
+    height: 22px;
+    z-index: 10;
+    text-align: center;
+    line-height: 19px;
+    text-indent: -9999px;
+    background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAYAAACNMs+9AAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyRpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMy1jMDExIDY2LjE0NTY2MSwgMjAxMi8wMi8wNi0xNDo1NjoyNyAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENTNiAoTWFjaW50b3NoKSIgeG1wTU06SW5zdGFuY2VJRD0ieG1wLmlpZDo1ODZGMjY2RkIzNUMxMUU0OTE3MEY4RTVGQUE1MzlGMiIgeG1wTU06RG9jdW1lbnRJRD0ieG1wLmRpZDo1ODZGMjY3MEIzNUMxMUU0OTE3MEY4RTVGQUE1MzlGMiI+IDx4bXBNTTpEZXJpdmVkRnJvbSBzdFJlZjppbnN0YW5jZUlEPSJ4bXAuaWlkOjU4NkYyNjZEQjM1QzExRTQ5MTcwRjhFNUZBQTUzOUYyIiBzdFJlZjpkb2N1bWVudElEPSJ4bXAuZGlkOjU4NkYyNjZFQjM1QzExRTQ5MTcwRjhFNUZBQTUzOUYyIi8+IDwvcmRmOkRlc2NyaXB0aW9uPiA8L3JkZjpSREY+IDwveDp4bXBtZXRhPiA8P3hwYWNrZXQgZW5kPSJyIj8+YaCUigAAAF9JREFUeNpi+P//Pz8QFwGxGhAzoGE1qBw/iFP7HwKuAzEzkiJmqBgI1IIEjIH4FFTgFJJCZDFjZGuOQiU2Q/F/qBhYHt1N6/4jwDpkOSYGYgEpVhPtGaKDh6gABwgwAHG1MUZDVqpLAAAAAElFTkSuQmCC");
+    background-repeat: no-repeat;
+    background-position: center;
+}
+body.browser-ie8 .btn-close{
+    background-color: #ccc;
+}
+
+
+#tidio-chat-button{
+    cursor: pointer;
+}
+#tidio-chat-button,
+.tidio-chat-window{
+    position: absolute;
+    right: 30px;
+    bottom: 0;
+    text-align: right;
+    padding-bottom: 12px;
+    width: 290px;
+}
+.tidio-chat-window{
+    padding-top: 30px;
+    z-index: 100;
+    /*Fix for cutted close button in jquery animation process*/
+    overflow: visible !important;
+}
+.message-wrapper{
+    vertical-align: top;
+    padding: 4px 5px 12px 5px;
+    overflow: hidden;
+    position: relative;
+    transition: all .3s;
+}
+.message-wrapper.disableanimation{
+    transition: none;
+}
+#tidio-chat-window-offline .message-wrapper{
+    overflow: visible;
+}
+.message-wrapper.with-name .message,
+.message-wrapper.intro-message .message,
+.message-wrapper.user .message,
+.message-wrapper.operator .message,
+.message-wrapper.operator .message-hours{
+    max-width: 198px;
+    margin-right: 12px;
+    background-color: rgb(74,137,220);
+    background-color: rgba(74,137,220,.95);
+    color: #fff;
+    text-align: left;
+    padding: 11px 14px 12px;
+    display: inline-block;
+    position: relative;
+    border-radius: 4px;
+    -webkit-box-shadow: 2px 6px 8px 0px rgba(0,0,0,0.24);
+    -moz-box-shadow: 2px 6px 8px 0px rgba(0,0,0,0.24);
+    box-shadow: 2px 6px 8px 0px rgba(0,0,0,0.24);
+
+    /* These are technically the same, but use both */
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+    -ms-word-break: break-all;
+    /* This is the dangerous one in WebKit, as it breaks things wherever */
+    word-break: break-all;
+    word-break: keep-all;
+    /* Adds a hyphen where the word breaks, if supported (No Blink) */
+    -ms-hyphens: auto;
+    -moz-hyphens: auto;
+    -webkit-hyphens: auto;
+    hyphens: auto;
+}
+.message-wrapper.log .message{
+    width: 100%;
+    max-width: none;
+    padding: 0 2px;
+    font-style: italic;
+    text-align: left;
+    font-size: 13px;
+    margin-top: -1px;
+    margin-bottom: 2px;
+    color: #96999E;
+}
+.message-wrapper .message,
+.message-wrapper .avatar{
+    transition: all .3s;
+    opacity: 1;
+    bottom: 0;
+    position: relative;
+}
+.message-wrapper.beforeshow .message,
+.message-wrapper.beforeshow .avatar{
+    opacity: 0;
+    bottom: -58px;
+}
+.message-wrapper.user,
+.message-wrapper.operator{
+    overflow: hidden;
+}
+.message-wrapper.with-name .message:after,
+.message-wrapper.intro-message .message:after,
+.message-wrapper.user .message:after,
+.message-wrapper.operator .message:after{
+    content: '';
+    display: block;
+    border: solid 7px rgba(0, 0, 0, 0);
+    border-left-color: red;
+    border-left-color: rgba(74,137,220,.95);
+    position: absolute;
+    right: -14px;
+    top: 14px;
+    transition: all .3s;
+}
+.message-wrapper .message.letter-icon,
+.message-wrapper .message.message-icon{
+    padding-left: 40px;
+    background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyRpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMy1jMDExIDY2LjE0NTY2MSwgMjAxMi8wMi8wNi0xNDo1NjoyNyAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENTNiAoTWFjaW50b3NoKSIgeG1wTU06SW5zdGFuY2VJRD0ieG1wLmlpZDpENEVEMTQ3MzY5QkQxMUU0QjNDRTg1MjQ1RkQ3NjVFNyIgeG1wTU06RG9jdW1lbnRJRD0ieG1wLmRpZDpENEVEMTQ3NDY5QkQxMUU0QjNDRTg1MjQ1RkQ3NjVFNyI+IDx4bXBNTTpEZXJpdmVkRnJvbSBzdFJlZjppbnN0YW5jZUlEPSJ4bXAuaWlkOkQ0RUQxNDcxNjlCRDExRTRCM0NFODUyNDVGRDc2NUU3IiBzdFJlZjpkb2N1bWVudElEPSJ4bXAuZGlkOkQ0RUQxNDcyNjlCRDExRTRCM0NFODUyNDVGRDc2NUU3Ii8+IDwvcmRmOkRlc2NyaXB0aW9uPiA8L3JkZjpSREY+IDwveDp4bXBtZXRhPiA8P3hwYWNrZXQgZW5kPSJyIj8+XqjgjAAAAMdJREFUeNpi/P//PwMaYAPiXChNCPxiwSLICMS8DMQBdiZcJhNpwE9sBvwk0vkQ5wLDgB1NDGSoDhAzo4mDAosDiB2g3gRbBgqDHDQbQQrfQGl0Aw4A8Scg5ocJsuAIMBkcLhYH4n/ozv1JpHdhLhJEjgUWBtLADyC+BMQ8UP5vUgwABdx7ID6P7gUGEg1hoLoB7CQYwIouAAqDm0DMBcSySOL3cBjwCVtKBNGcQFwOFZsDxE+IdRIsFkAp6zMQryNFMwgABBgArNAlgplpwrsAAAAASUVORK5CYII=");
+    background-repeat: no-repeat;
+    background-position: 13px;
+}
+.message.letter-icon{
+    background-image: url('//static.tidiochat.com/clients/v2/media/img/email.png');
+    background-position: 13px 13px;
+}
+.message a{
+    color: #fff;
+    text-decoration: none;
+}
+@media
+(-webkit-min-device-pixel-ratio: 2),
+(min-resolution: 192dpi) {
+    .message.message-icon{
+        background-image: url('//static.tidiochat.com/clients/v2/media/img/chatboxes2x.png');
+        background-size: 16px;
+    }
+    .message.letter-icon{
+        background-image: url('//static.tidiochat.com/clients/v2/media/img/email2x.png');
+        background-size: 16px;
+    }
+}
+.name{
+    color: #838C98;
+    font-size: 12px;
+    font-style: italic;
+    text-align: right;
+    margin-bottom: 7px;
+    display: inline-block;
+    background-color: #FFF;
+    padding: 0 8px;
+    margin-right: 58px;
+    border-radius: 4px;
+    -webkit-box-shadow: 2px 6px 8px 0px rgba(0,0,0,0.24);
+    -moz-box-shadow: 2px 6px 8px 0px rgba(0,0,0,0.24);
+    box-shadow: 2px 6px 8px 0px rgba(0,0,0,0.24);
+}
+.avatar{
+    background-image: url('//static.tidiochat.com/clients/v2/media/img/ava.png');
+    background-size: cover;
+    background-position: center;
+    display: inline-block;
+    width: 46px;
+    height: 46px;
+    vertical-align: top;
+    border-radius: 22px;
+    -webkit-box-shadow: 2px 6px 8px 0px rgba(0,0,0,0.24);
+    -moz-box-shadow: 2px 6px 8px 0px rgba(0,0,0,0.24);
+    box-shadow: 2px 6px 8px 0px rgba(0,0,0,0.24);
+    margin-top: -4px;
+}
+.with-name .avatar{
+    margin-top: 0;
+}
+.lang-rtl .with-name .avatar {
+    margin-right: 10px;
+}
+.avatar .notification{
+    content: '1';
+    display: block;
+    position: absolute;
+    color: #fff;
+    text-align: center;
+    width: 16px;
+    height: 16px;
+    font-size: 11px;
+    line-height: 15px;
+    font-weight: 400;
+    background-color: #E8504F;
+    border-radius: 8px;
+    filter: alpha(opacity=0);
+    zoom: 1;
+    opacity: 0;
+}
+form{
+    margin-top: -5px;
+}
+textarea.form-control,
+input.form-control{
+    background-color: rgb(255, 255, 255);
+    border: solid 1px #D7DEE0;
+    border-radius: 4px;
+    color: #656D78;
+    padding: 11px 14px 12px;
+    width: 100%;
+    margin-bottom: 10px;
+    -webkit-box-shadow: 2px 6px 8px 0px rgba(0,0,0,0.24);
+    -moz-box-shadow: 2px 6px 8px 0px rgba(0,0,0,0.24);
+    box-shadow: 2px 6px 8px 0px rgba(0,0,0,0.24);
+    font-size: 16px;
+    padding-right: 40px;
+}
+#tidio-chat-window-preform select{
+    background: #fff;
+    border: solid 1px #D7DEE0;
+    width: 100%;
+    height: 44px;
+    margin-bottom: 10px;
+    padding: 10px 12px 11px;
+    font-size: 16px;
+    color: #656D78;
+    font-family: 'Roboto Condensed', sans-serif;
+    border-radius: 4px;
+    -webkit-box-shadow: 2px 6px 8px 0px rgba(0,0,0,0.24);
+    -moz-box-shadow: 2px 6px 8px 0px rgba(0,0,0,0.24);
+    box-shadow: 2px 6px 8px 0px rgba(0,0,0,0.24);
+}
+#tidio-chat-window-offline .message-wrapper,
+#tidio-chat-window-preform .message-wrapper{
+    margin-bottom: 12px;
+}
+textarea{
+    height: 70px;
+}
+.submit-wrapper{
+    position: relative;
+}
+.submit-wrapper .btn-minimalize{
+    position: absolute;
+    top: 12px;
+    right: 14px;
+    text-indent: 9999px;
+    background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAQAAAAQCAYAAAAxtt7zAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyRpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMy1jMDExIDY2LjE0NTY2MSwgMjAxMi8wMi8wNi0xNDo1NjoyNyAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENTNiAoTWFjaW50b3NoKSIgeG1wTU06SW5zdGFuY2VJRD0ieG1wLmlpZDpDN0MxOTc4MjY5QkUxMUU0QjNDRTg1MjQ1RkQ3NjVFNyIgeG1wTU06RG9jdW1lbnRJRD0ieG1wLmRpZDpDN0MxOTc4MzY5QkUxMUU0QjNDRTg1MjQ1RkQ3NjVFNyI+IDx4bXBNTTpEZXJpdmVkRnJvbSBzdFJlZjppbnN0YW5jZUlEPSJ4bXAuaWlkOkM3QzE5NzgwNjlCRTExRTRCM0NFODUyNDVGRDc2NUU3IiBzdFJlZjpkb2N1bWVudElEPSJ4bXAuZGlkOkM3QzE5NzgxNjlCRTExRTRCM0NFODUyNDVGRDc2NUU3Ii8+IDwvcmRmOkRlc2NyaXB0aW9uPiA8L3JkZjpSREY+IDwveDp4bXBtZXRhPiA8P3hwYWNrZXQgZW5kPSJyIj8+/cz4/wAAADNJREFUeNpiTM2teMrAwMDLAAGfWYCEFAMC8DIxoAGQimfIWhj///+PogJDC+OQsQUgwABiFhXWd0haUQAAAABJRU5ErkJggg==");
+    display: block;
+    width: 14px;
+    height: 16px;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+.submit-wrapper .btn-send{
+    position: absolute;
+    bottom: 23px;
+    right: 14px;
+    background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyRpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMy1jMDExIDY2LjE0NTY2MSwgMjAxMi8wMi8wNi0xNDo1NjoyNyAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENTNiAoTWFjaW50b3NoKSIgeG1wTU06SW5zdGFuY2VJRD0ieG1wLmlpZDo3NkU2RkM3MzY5QkUxMUU0QjNDRTg1MjQ1RkQ3NjVFNyIgeG1wTU06RG9jdW1lbnRJRD0ieG1wLmRpZDo3NkU2RkM3NDY5QkUxMUU0QjNDRTg1MjQ1RkQ3NjVFNyI+IDx4bXBNTTpEZXJpdmVkRnJvbSBzdFJlZjppbnN0YW5jZUlEPSJ4bXAuaWlkOjc2RTZGQzcxNjlCRTExRTRCM0NFODUyNDVGRDc2NUU3IiBzdFJlZjpkb2N1bWVudElEPSJ4bXAuZGlkOjc2RTZGQzcyNjlCRTExRTRCM0NFODUyNDVGRDc2NUU3Ii8+IDwvcmRmOkRlc2NyaXB0aW9uPiA8L3JkZjpSREY+IDwveDp4bXBtZXRhPiA8P3hwYWNrZXQgZW5kPSJyIj8+N872xwAAAIJJREFUeNpi/P//P0Pc3LcMOEA9lG7EpYCFATdwAOIGJD5WQ5jwGHAASVMDkmuINgCmEa8hhAwgaAgxBuA1hFgDcBrCAozC/wzkgQZSXYANMDItShZmBDGIxOjpooEUF9QjGdBIqhewaibWAJyaiTEAr2ZCBjgQ0kwoN6JnJqwAIMAA0rAjGgKFZrIAAAAASUVORK5CYII=");
+    display: block;
+    width: 16px;
+    height: 16px;
+    background-color: transparent;
+    border: 0;
+}
+#offline-form-form .submit-wrapper .btn-send{
+    bottom: 24px;
+}
+.message-hours{
+    max-width: 222px !important;
+    font-size: 14px;
+}
+.message-hours p{
+    margin: 0;
+    margin-bottom: 6px;
+}
+.message-hours div{
+    border-top: solid 1px rgba(255,255,255,.3);
+    padding: 8px 40px 2px 26px;
+    position: relative;
+    background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABMAAAASCAYAAAC5DOVpAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyRpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMy1jMDExIDY2LjE0NTY2MSwgMjAxMi8wMi8wNi0xNDo1NjoyNyAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENTNiAoTWFjaW50b3NoKSIgeG1wTU06SW5zdGFuY2VJRD0ieG1wLmlpZDowMDI2QTlBNTdBM0ExMUU1QkJGMEZDQjU4RTlEMjBGOCIgeG1wTU06RG9jdW1lbnRJRD0ieG1wLmRpZDowMDI2QTlBNjdBM0ExMUU1QkJGMEZDQjU4RTlEMjBGOCI+IDx4bXBNTTpEZXJpdmVkRnJvbSBzdFJlZjppbnN0YW5jZUlEPSJ4bXAuaWlkOjAwMjZBOUEzN0EzQTExRTVCQkYwRkNCNThFOUQyMEY4IiBzdFJlZjpkb2N1bWVudElEPSJ4bXAuZGlkOjAwMjZBOUE0N0EzQTExRTVCQkYwRkNCNThFOUQyMEY4Ii8+IDwvcmRmOkRlc2NyaXB0aW9uPiA8L3JkZjpSREY+IDwveDp4bXBtZXRhPiA8P3hwYWNrZXQgZW5kPSJyIj8+AqT5kQAAAYFJREFUeNqU0k0oRFEYBuDjmoUshsiCUWpKs7BQSikrkpVMjRWlKSuynQ22mig/C2ksMTYWM+VnJQthpWyUTPn/nZJCbLneoxenr3Nv49RTc97vnO+ee+4o13WVEII5OHX/xhmkoM6y/pcMxrn5lpu7oA3m4Zq1yUKarXJx3Mhq2exn3ss1637NklwUEQtm4EFkYa6dtTWrYLHP8jT92veWPMo91bLZAjx73MMEfHjU8rBiZo5SKgZpZR8OFVtqyxA1gwBUwZ7yHyG4EdkiuLKZkiFHCQzz9+fS8ZCsn8QbUiNmrl/hCVotza6gFBrhznZcNHLlnaxBv5EF9VOhDGrgSPSohwy8UobZd7NRqOSH0KMJ3tksLxpF4IBrgxRjFtF39gjTfEIYdqDZ40MkodyS6yzpcJKADbgwTmgbHT61zoAx6YYpnvAcNuEQ9uFSFTAcMU/wVXehh3/MQShifdun11bAEupTDHhsGIN2y7296Jqj/jdy0AJZeKMss9yXAAMAJmGsd9MH9cIAAAAASUVORK5CYII=");
+    background-repeat: no-repeat;
+    background-position: 0px 17px;
+    cursor: pointer;
+    margin-bottom: -6px;
+}
+.message-hours div:after{
+    content: '';
+    display: block;
+    border: solid 6px rgba(0, 0, 0, 0);
+    border-top-color: #fff;
+    position: absolute;
+    top: 21px;
+    right: 6px;
+}
+.message-hours ul{
+    display: none;
+    color: #6A6F75;
+    background: #fff;
+    position: absolute;
+    top: 43px;
+    right: -1px;
+    list-style: none;
+    padding: 1px;
+    margin: 0;
+    z-index: 1;
+    padding: 7px 13px;
+    width: 190px;
+    font-size: 12px;
+    border-bottom: solid 3px #5E9DEC;
+    box-shadow: 0 5px 15px 0px rgba(0,0,0,.1);
+}
+.message-hours div:hover ul{
+    display: block;
+}
+.message-hours ul:before{
+    content: '';
+    display: block;
+    border: solid 8px rgba(0, 0, 0, 0);
+    border-bottom-color: #fff;
+    position: absolute;
+    top: -16px;
+    right: 5px;
+}
+.message-hours ul li{
+    margin-bottom: -2px;
+    clear: both;
+}
+.message-hours ul li span.right{
+    float: right;
+    width: 56px;
+    text-align: right;
+}
+.message-hours ul li span.text-center{
+    text-align: center;
+}
+
+
+@media
+(-webkit-min-device-pixel-ratio: 2),
+(min-resolution: 192dpi) {
+    .submit-wrapper .btn-minimalize{
+        background-image: url('//static.tidiochat.com/clients/v2/media/img/more2x.png');
+        background-size: 16px;
+    }
+    .submit-wrapper .btn-send{
+        background-image: url('//static.tidiochat.com/clients/v2/media/img/go2x.png');
+        background-size: 16px;
+        background-repeat: no-repeat;
+        padding: 0;
+    }
+}
+.submit-wrapper > .with-button{
+    padding-right: 60px;
+    margin-bottom: 0;
+    font-size: 16px;
+}
+.submit-wrapper input.input-err {
+    border: 1px solid red;
+}
+#send-btn{
+    text-indent: -9999px;
+    position: absolute;
+    top: 10px;
+    right: 9px;
+    background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABoAAAAaCAYAAACpSkzOAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyRpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMy1jMDExIDY2LjE0NTY2MSwgMjAxMi8wMi8wNi0xNDo1NjoyNyAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENTNiAoTWFjaW50b3NoKSIgeG1wTU06SW5zdGFuY2VJRD0ieG1wLmlpZDpCMjVCOTM3Mzc3MTYxMUU1QTgxRENGRDBGQTNGNjEyNyIgeG1wTU06RG9jdW1lbnRJRD0ieG1wLmRpZDpCMjVCOTM3NDc3MTYxMUU1QTgxRENGRDBGQTNGNjEyNyI+IDx4bXBNTTpEZXJpdmVkRnJvbSBzdFJlZjppbnN0YW5jZUlEPSJ4bXAuaWlkOkIyNUI5MzcxNzcxNjExRTVBODFEQ0ZEMEZBM0Y2MTI3IiBzdFJlZjpkb2N1bWVudElEPSJ4bXAuZGlkOkIyNUI5MzcyNzcxNjExRTVBODFEQ0ZEMEZBM0Y2MTI3Ii8+IDwvcmRmOkRlc2NyaXB0aW9uPiA8L3JkZjpSREY+IDwveDp4bXBtZXRhPiA8P3hwYWNrZXQgZW5kPSJyIj8+MGjoGAAAAnRJREFUeNq8VktoE1EUPTOTSWISk5jWohFraRv8IEVRwYJdKK2uFF0Jbly5VFA34k7EKIJbty5c+AW70EVtNyJopQ1axUpbqTXG9IOtScaamcxknvclU0EwJtiXHrjDvOHxzpz7efdKjDFMzy3EAFwj6yYLQgxyZANkF9Y3RSak9Oz8ZloMer2esFtVIUmSEBYuoGCa0HUjQ8u9LnrEOYnH7YZI8B92zgwTWVzm7uJK6gXn7IOcKCjKXZWUEQIyVghCiEZSFm69yP9zj2s5BOOzFh69MfDpWxHNEUU80deMjfsJHamFIrpibhRtoGODSxxR5ifDvWEdY6Rk9yYVx3d5EQ3LGP5soq1JgCLDYnhACoamLLSuVXDpSABfSI3fI2FqvgjdZNi6bpmKeikGz8YLiPglnO32oaVBwe3BPDJ5htP7feh7b2KNr3pO/ZVIMxjeUia9mizApUg42bkKOzaWt17vW8QkBf/mifKV+GHGqqqmIlGCfH53SC+9n9pXJsmSghv9i5jTbFw9FoBMdWgzujl1hp3N6v8RdbW7sT3qQiJponfEwJN3Br5TIuQpFud6/L9dNTptgdd9rEoiVCxYhb420qVxaJsHlynw6axdIuGYoIxbwutkbfGp+WZYKsawT8JjUnfHcWuK6qm9BjU1p7fi/M6ZA36EvBLOP9Rg27znAHtaVHGKNAp4G9VPNCSXaufK0QCefywgSbXU2ihQ0eEOzx8p3OCXS0kxmrZqbxfUylkouLquLSKb07Ci/SjHB4l6wTn7BycaMGlaqRecs5/yGG2hl5d1Hrc6JWeA5LNdnKyHTFRmaGT9ZBdpgBz7JcAA7U7y5rBvTl0AAAAASUVORK5CYII=");
+    width: 26px;
+    height: 26px;
+    display: none;
+}
+
+body#tidio-chat-mobile #send-btn{
+    display: block;
+}
+/*Settings*/
+#settings-btn{
+    text-indent: 9999px; /* this issue is responsible for problem with width in safari */
+    position: absolute;
+    top: 13px;
+    right: 14px;
+    background: url('//static.tidiochat.com/clients/v2/media/img/chat-settings.png') no-repeat;
+    background-position: -0px -18px; width: 18px; height: 18px;
+}
+#settings-btn:hover{
+    background-position: -0px -0px; width: 18px; height: 18px;
+}
+#settings-btn.loading{
+    cursor: default;
+    background-position: 0;
+    background-image: url("data:image/gif;base64,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")
+}
+#settings-btn .info{
+    display: none;
+}
+#settings-btn.loading .info{
+    display: inline-block;
+    background: rgba(0,0,0,.7);
+    color: #FFF;
+    border-radius: 4px;
+    right: -4px;
+    top: -35px;
+    position: absolute;
+    text-indent: 0;
+    font-size: 12px;
+    padding: 4px 8px 5px;
+    margin: 0;
+}
+#settings-btn.loading .info:after{
+    content: '';
+    display: block;
+    border: solid 5px transparent;
+    border-top-color: rgba(0,0,0,.7);
+    position: absolute;
+    position: absolute;
+    right: 9px;
+    bottom: -10px;
+}
+
+#tidio-chat-mobile #settings-btn { /*disable on mobile */
+    display: none;
+}
+
+#settings{
+    background-color: #FFF;
+    border-radius: 4px;
+    position: absolute;
+    bottom: 50px;
+    right: 9px;
+    text-align: left;
+    box-shadow: 0px 2px 7px rgba(0, 0, 0, 0.4);
+    display: none;
+    z-index: 99;
+}
+#settings.active{
+    display: block;
+}
+#settings:after{
+    content: '';
+    display: inline-block;
+    border: solid 10px transparent;
+    border-top-color: #fff;
+    position: absolute;
+    bottom: -20px;
+    right: 4px;
+}
+#settings a{
+    display: block;
+    text-decoration: none;
+    padding: 9px 12px 11px;
+    font-size: 14px;
+    color: #656d78;
+    border-bottom: solid 1px #E6E9EE;
+}
+#settings a:last-of-type{
+    border-bottom: none;
+}
+#settings a:hover{
+    background-color: #F7F8FC;
+    color: #5d9cec;
+}
+#send-file-btn{
+    border-radius: 4px 4px 0 0;
+}
+#send-file-btn:before{
+    content: '';
+    display: inline-block;
+    background: url('//static.tidiochat.com/clients/v2/media/img/chat-settings.png') no-repeat;
+    background-position: -0px -84px; width: 16px; height: 16px;
+    position: relative;
+    top: 2px;
+    margin-right: 10px;
+}
+#send-file-btn:hover:before{
+    background-position: -0px -68px;
+}
+#notifications-btn{
+    border-radius: 0 0 4px 4px;
+}
+#notifications-btn:before{
+    content: '';
+    display: inline-block;
+    background: url('//static.tidiochat.com/clients/v2/media/img/chat-settings.png') no-repeat;
+    background-position: -0px -52px; width: 16px; height: 16px;
+    position: relative;
+    top: 4px;
+    margin-right: 10px
+}
+#notifications-btn:hover:before{
+    background-position: -0px -36px;
+}
+#rating-btn:before{
+    content: '';
+    display: inline-block;
+    background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAMAAAAoLQ9TAAAAS1BMVEUAAAC0u8WzusSzu8W0u8WzusSzu8Wzu8Wzu8Wzu8WzusSzusSzu8W0u8Wzu8Wzu8WzusSzusWzu8Wzu8WzusWzusSzu8WzusWzu8XU0AMCAAAAGHRSTlMAyxL15XRXBO7swK2Nf1FLOyAXDPr5Y2MJm1mWAAAAbElEQVQY012NRw7AIAwECTWVmrL/f2mMsETIXNAO9lowUoqRbfsJYMwe8IOYgKmnkiwIm0pNZtEKjNKLEXnFhzXTzN7z3jqM4g3Tb1T6HXk2cUkWAUxgcdB0jLR3tOxmbetr9exaxe3456GSFwkWCKGz0JT9AAAAAElFTkSuQmCC");
+    width: 16px; height: 16px;
+    position: relative;
+    top: 2px;
+    margin-right: 10px
+}
+#rating-btn:hover:before{
+    background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAMAAAAoLQ9TAAAAVFBMVEUAAABopu9opu9opu9opu9opu9opu9opu9ppu9opu5opu5opu9opu5opu9opu9opu9opu9opu9opu9ppu9opu5opu9ope5opu5ope5opu9opu5opu/Ad55AAAAAG3RSTlMAE/XtynQE+ufjzsBjWVZRSyAMra2NjX9/OzsiuLN4AAAAbElEQVQY012NRw7AIAwEMS299+z//xmQHREyFzSDWJRApHLW5ReA3AdgyIIFbLJ56hHopzmaM5WGoCvjFDX40MTft+Q7bzgtL5wSag7161RwKEjCCGGUcAD2ui1wsntTdvHsSuN5ovVy04aRB4aWCZsgCu34AAAAAElFTkSuQmCC")
+}
+#file{
+    display: none;
+}
+.settings-on, .settings, .bell-on, .bell, .doc-on,
+.doc
+{ display: inline-block; background: url('//static.tidiochat.com/clients/v2/media/img/chat-settings.png') no-repeat; overflow: hidden; text-indent: -9999px; text-align: left; }
+
+.settings-on { background-position: -0px -0px; width: 18px; height: 18px; }
+.settings { background-position: -0px -18px; width: 18px; height: 18px; }
+.bell-on { background-position: -0px -36px; width: 16px; height: 16px; }
+.bell { background-position: -0px -52px; width: 16px; height: 16px; }
+.doc-on { background-position: -0px -68px; width: 16px; height: 16px; }
+.doc { background-position: -0px -84px; width: 16px; height: 16px; }
+
+.lang-rtl #send-file-btn:before,
+.lang-rtl #notifications-btn:before,
+.lang-rtl #rating-btn:before {
+    float: right;
+}
+
+/*Chat*/
+#tidio-chat-discussion.loading .loader{
+    width: 291px;
+    height: 382px;
+    position: fixed;
+    bottom: 21px;
+    right: 29px;
+    z-index: 1;
+}
+#tidio-chat-discussion.loading .loader:after{
+    content: '';
+    display: block;
+    width: 54px;
+    height: 60px;
+    background-image: url('//www.tidiochat.com/clients/v2/media/img/loading.png');
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-left: -27px;
+    margin-top: -30px;
+    -webkit-animation: loading 2s steps(61) infinite;
+    -moz-animation: loading 2s steps(61) infinite;
+    -ms-animation: loading 2s steps(61) infinite;
+    -o-animation: loading 2s steps(61) infinite;
+    animation: loading 2s steps(61) infinite;
+}
+@-webkit-keyframes loading {
+    from { background-position:    0px; }
+    to { background-position: -3292px; }
+}
+@-moz-keyframes loading {
+    from { background-position:    0px; }
+    to { background-position: -3292px; }
+}
+@-ms-keyframes loading {
+    from { background-position:    0px; }
+    to { background-position: -3292px; }
+}
+@-o-keyframes loading {
+    from { background-position:    0px; }
+    to { background-position: -3292px; }
+}
+@keyframes loading {
+    from { background-position:    0px; }
+    to { background-position: -3292px; }
+}
+
+#tidio-chat-discussion.loading .message{
+    opacity: .3;
+}
+#tidio-chat-discussion{
+    margin-bottom: 12px;
+    max-height: 292px;
+    overflow: auto;
+    overflow-x: visible !important;
+    padding-top: 4px;
+}
+#tidio-chat-discussion::-webkit-scrollbar {
+    display: none;
+}
+.message>*{
+    position: relative;
+}
+.message-wrapper.user{
+    max-width: none;
+    text-align: left;
+}
+.message-wrapper.user .message{
+    background-color: #434a54;
+    background-color: rgba(67, 74, 84, 1);
+    border-radius: 4px 4px 4px 0;
+}
+.message-wrapper.user .message:after{
+    border-color: rgba(0, 0, 0, 0);
+    border-left-color: rgba(67, 74, 84, 1);
+    left: 0;
+    bottom: -7px;
+    top: auto;
+    top: initial;
+    border-top-width: 0;
+}
+.message-wrapper.typing{
+    font-style: italic;
+}
+#new-message{
+    margin-bottom: -60px;
+    opacity: 0;
+}
+.message img{
+    max-width: 100%;
+}
+.message a.image-preview{
+    display: block;
+    position: relative;
+}
+.message a.image-preview:hover:after{
+    content: '';
+    display: block;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: rgba(0,0,0,.3);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAMAAABg3Am1AAAAnFBMVEUAAAD///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////+TINBkAAAAM3RSTlMAgPOtwPh5Z+p24hANB96GGxQK77ZvXFEmH9POqIphRjcy2cadmXJqV0w95bmxjn06LQPwQJjFAAABxUlEQVRIx9VU2ZaCMAwtILLI6r4D7us42v//t0npaEuk9XDmae5Tk9xrk1sMqaDw5jPfNP2Z5eXkI4LdjEqYeh09f+dShJ6noY/XL55pvo6zu4o/4gT7OjhNgmCSO/Nf1aGeP+Q/bSQilXq8RaeOfyxL8wSZsC3To3f+pCwMVBePCcaUpYekBhmrRDi7Z9kdqcWB1ZC7oQ25q4jbptkWUTlHtyIYMDsDES8oXUjlHpTbFUEEmViKDUoNKXSgfJb5dwroqAWEvWAuxR7EfaIRbGg1YbEnwAJsVB89wkkmOOhzGANhJcVniCfcT6NEi9IWP3FzujBEL6zMZPOZ6Rs4wwdG+geB26wlPvT3x6GRrXudrSNk6+3Tw23RwxUUEGgEPdyzD4mbWrCEsktktCFjh8rP20UdgW0UYKn+QF+iY8HA2wTvEwNnI7FNEE6s0npfk2hjoX3YV+2fDdrWIetfXIEXAcD1UskLBzpVK5a8Ys6XRRqGaTHcMDt1inz1LNquaz/Pa0utIIZNEWzYPjpFEvsy3Y9hm+sV5JHFl8iEUaJLnD0goVEIdJJE+IsUavwnRbepYt30jiVppsgIaaQ4kkaw2ML7AYD7cRpXslfwAAAAAElFTkSuQmCC");
+}
+#tidio-chat-window-preform-form{
+    position: relative;
+}
+
+.inchat-dialog{
+    background-color: rgba(0, 0, 0, 0);
+    padding-top: 0px;
+    min-height: 310px;
+}
+/*Preform in talk*/
+#intalk-preform div{
+    padding: 0;
+}
+#intalk-preform p{
+    margin: 0;
+    padding: 10px 16px 12px;
+    padding-left: 55px;
+    font-size: 14px;
+    text-align: left;
+    background: url('../img/airplane.png') no-repeat 13px;
+}
+#intalk-preform a,
+#intalk-preform label,
+#intalk-preform select,
+#intalk-preform textarea,
+#intalk-preform input:not([type="checkbox"]){
+    padding: 10px 12px 11px;
+    border: none !important;
+    border-bottom: 1px solid #E8E9ED !important;
+    width: 100%;
+    display: block;
+    font-size: 15px;
+    margin-bottom: 0;
+    background: #fff;
+    border-radius: 0;
+    outline: none;
+}
+#intalk-preform select{
+    text-indent: 4px;
+    height: 41px;
+    color: #656D78;
+    -webkit-appearance: none;
+}
+#intalk-preform label input{
+    margin-right: 8px;
+}
+#intalk-preform label{
+    text-align: center;
+    font-size: 14px;
+    text-indent: 8px;
+    padding-bottom: 10px;
+}
+#intalk-preform .newsletter{
+    margin-bottom: 0;
+}
+#intalk-preform .newsletter label{
+    text-align: left;
+}
+#intalk-preform input[type="submit"]{
+    text-align: center;
+    color: #fff;
+    font-size: 16px;
+    text-decoration: none;
+    border-bottom: none !important;
+}
+#intalk-preform input[type="submit"]:hover{
+    color: #fff;
+    opacity: 0.9;
+    cursor: pointer;
+}
+#intalk-preform .inchat-dialog-fields > *:first-of-type{
+    border-top: 1px solid #E8E9ED !important;
+}
+
+.newsletter{
+    line-height: 20px;
+    color: #474C52;
+    font-size: 13px;
+    padding: 0px 10px 0 0;
+    display: none;
+    text-align: left;
+    font-weight: 300;
+    margin-bottom: -11px;
+}
+.newsletter input{
+    position: relative;
+    top: -1px;
+    margin-right: 5px;
+    box-shadow: 2px 6px 8px 0px rgba(0,0,0,0.24);
+}
+body:not(.os-os-x) .newsletter input{
+    top: 2px;
+}
+.powered{
+    color: #838C98;
+    text-decoration: none;
+    font-size: 10px;
+    position: absolute;
+    display: inline-block;
+    bottom: 0px;
+    right: 0px;
+    z-index: 101;
+    opacity: 0.7;
+}
+.powered:hover{
+    opacity: 1 !important;
+}
+#tidio-chat-mobile .powered{
+    right: 10px;
+}
+
+.no-branding-flag .powered {
+    display: none !important;
+}
+
+/* Support for RTL Languages */
+
+body.lang-rtl {
+    direction: rtl;
+    unicode-bidi: embed;
+}
+
+body.lang-rtl,
+body.lang-rtl input,
+body.lang-rtl textarea {
+    font-family: "Tahoma";
+}
+
+body.lang-rtl .powered {
+    display: none; /* todo: adjust powered button to rtl mode */
+}
+
+body.lang-rtl #tidio-chat-button .message-wrapper{
+    margin-right: 0;
+    margin-left: 12px;
+}
+body.lang-rtl #tidio-chat-button .message:after{
+    display: none;
+}
+body.lang-rtl div#ascrail2000 {
+    right: initial !important;
+    left: 8px !important;
+}
+body.lang-rtl .button,
+body.lang-rtl #tidio-chat-window-online{
+    padding: 2px;
+    padding-left: 7px;
+}
+body.lang-rtl #tidio-chat-discussion{
+    direction: ltr;
+}
+
+/* Reconnection position fix */
+
+#tidio-chat-reconnection-btn-close {
+    top: 10px;
+    right: 10px;
+}
+
+/* Display circle mode */
+
+.display-circle #tidio-chat-button .message-wrapper > .name,
+.display-circle #tidio-chat-button .message-wrapper > .message { display: none; }
+
+.display-circle #tidio-chat-button .message-wrapper > .avatar {
+    width: 50px;
+    height: 50px;
+    border-radius: 50px;
+}
